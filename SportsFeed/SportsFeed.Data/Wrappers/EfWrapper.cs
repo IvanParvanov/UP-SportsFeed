@@ -6,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 
+using SportsFeed.Data.Contracts;
 using SportsFeed.Data.Results;
 
 namespace SportsFeed.Data.Wrappers

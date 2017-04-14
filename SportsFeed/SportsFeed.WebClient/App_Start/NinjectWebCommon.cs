@@ -1,22 +1,41 @@
 using System;
 using System.Web;
 
+using Bytes2you.Validation;
+
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Extensions.Conventions;
 
-using SportsFeed.WebClient.NinjectModules;
+using SportsFeed.WebClient.Ninject;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SportsFeed.WebClient.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(SportsFeed.WebClient.App_Start.NinjectWebCommon), "Stop")]
 
 namespace SportsFeed.WebClient.App_Start
 {
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
+        private static IKernel kernel;
+
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        public static IKernel Kernel
+        {
+            get
+            {
+                return kernel;
+            }
+
+            private set
+            {
+                Guard.WhenArgument(value, nameof(Kernel)).IsNull().Throw();
+
+                kernel = value;
+            }
+        }
 
         /// <summary>
         /// Starts the application
@@ -42,7 +61,7 @@ namespace SportsFeed.WebClient.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);

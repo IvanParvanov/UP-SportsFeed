@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D52CAFEA-1D3C-43E9-B7D8-AAC14992140F}</ProjectGuid>
+    <ProjectGuid>{22A35CF4-C5C3-4F24-A797-E6F0AF5930A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SportsFeed.Data</RootNamespace>
-    <AssemblyName>SportsFeed.Data</AssemblyName>
+    <RootNamespace>SportsFeed.Services</RootNamespace>
+    <AssemblyName>SportsFeed.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,19 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,28 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ISaveable.cs" />
-    <Compile Include="Contracts\ISportsFeedDbContext.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Base\VitalBetEntity.cs" />
-    <Compile Include="Models\Contracts\IIdentifiable.cs" />
-    <Compile Include="Models\Contracts\IVitalBetEntity.cs" />
-    <Compile Include="Models\Enums\MatchType.cs" />
-    <Compile Include="Models\Sport.cs" />
-    <Compile Include="SportsFeedDbContext.cs" />
-    <Compile Include="Wrappers\IEfWrapper.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Results\DataModifiedResult.cs" />
-    <Compile Include="Results\IDataModifiedResult.cs" />
-    <Compile Include="Results\IDataModifiedResultFactory.cs" />
-    <Compile Include="Wrappers\EfWrapper.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

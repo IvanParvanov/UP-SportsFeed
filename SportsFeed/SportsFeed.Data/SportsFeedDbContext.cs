@@ -1,8 +1,6 @@
-using System;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Threading;
-using System.Threading.Tasks;
+
+using SportsFeed.Data.Contracts;
 
 namespace SportsFeed.Data
 {
@@ -18,21 +16,5 @@ namespace SportsFeed.Data
         {
             return base.Set<T>();
         }
-    }
-
-    public interface ISportsFeedDbContext : IDisposable, ISaveable
-    {
-        IDbSet<T> Set<T>() where T : class;
-
-        DbEntityEntry<T> Entry<T>(T entity) where T : class;
-    }
-
-    public interface ISaveable
-    {
-        int SaveChanges();
-
-        Task<int> SaveChangesAsync();
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
