@@ -222,3 +222,4 @@ node_module/
 bower_components/
 .bin/
 .vscode/
+.vs/
