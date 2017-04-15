@@ -7,6 +7,8 @@ using Ninject.Modules;
 using SportsFeed.BackgroundWorkers.Helpers;
 using SportsFeed.BackgroundWorkers.Helpers.Contracts;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
+using SportsFeed.Services;
+using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.WebClient.Ninject
 {
@@ -30,6 +32,10 @@ namespace SportsFeed.WebClient.Ninject
             this.Bind<UpdateDatabaseJob>()
                 .ToSelf()
                 .Named(typeof(UpdateDatabaseJob).Name);
+
+            this.Rebind<IBetInformationService>()
+                .To<VitalBetInformationService>()
+                .InSingletonScope();
         }
     }
 }

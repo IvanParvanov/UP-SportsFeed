@@ -1,4 +1,4 @@
-namespace SportsFeed.Data.Models.Contracts
+namespace SportsFeed.Models.Models.Contracts
 {
     public interface IIdentifiable
     {

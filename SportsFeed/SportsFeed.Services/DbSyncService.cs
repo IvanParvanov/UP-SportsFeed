@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 
 using Bytes2you.Validation;
 
 using SportsFeed.Data.Contracts;
-using SportsFeed.Data.Models.Contracts;
+using SportsFeed.Models.Models.Contracts;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.Services
@@ -24,7 +25,16 @@ namespace SportsFeed.Services
 
         public IEnumerable<IExternalEntity> SyncDatabase()
         {
-            throw new System.NotImplementedException();
+            var webEntities = this.betService.GetData();
+
+            foreach (var sport in webEntities)
+            {
+                this.dbContext.Sports.AddOrUpdate(sport);
+
+                this.dbContext.SaveChanges();
+            }
+
+            return webEntities;
         }
     }
 }

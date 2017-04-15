@@ -2,7 +2,7 @@
 
 using Bytes2you.Validation;
 
-using SportsFeed.Data.Models.Contracts;
+using SportsFeed.Models.Models.Contracts;
 
 namespace SportsFeed.BackgroundWorkers.EventArgs
 {

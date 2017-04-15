@@ -1,4 +1,4 @@
-﻿namespace SportsFeed.Data.Models.Enums
+﻿namespace SportsFeed.Models.Models.Enums
 {
     public enum MatchType
     {

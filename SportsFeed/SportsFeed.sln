@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Services", "Spor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.BackgroundWorkers", "SportsFeed.BackgroundWorkers\SportsFeed.BackgroundWorkers.csproj", "{C063876B-231C-44E2-9A40-17D22B5E529C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Models", "SportsFeed.Models\SportsFeed.Models.csproj", "{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C063876B-231C-44E2-9A40-17D22B5E529C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C063876B-231C-44E2-9A40-17D22B5E529C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C063876B-231C-44E2-9A40-17D22B5E529C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

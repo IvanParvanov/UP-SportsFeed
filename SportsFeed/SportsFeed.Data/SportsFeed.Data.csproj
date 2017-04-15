@@ -58,12 +58,6 @@
     <Compile Include="Contracts\ISaveable.cs" />
     <Compile Include="Contracts\ISportsFeedDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Base\ExternalEntity.cs" />
-    <Compile Include="Models\Contracts\IIdentifiable.cs" />
-    <Compile Include="Models\Contracts\IExternalEntity.cs" />
-    <Compile Include="Models\Contracts\ISport.cs" />
-    <Compile Include="Models\Enums\MatchType.cs" />
-    <Compile Include="Models\Sport.cs" />
     <Compile Include="SportsFeedDbContext.cs" />
     <Compile Include="Wrappers\IEfWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,7 +66,12 @@
     <Compile Include="Results\IDataModifiedResultFactory.cs" />
     <Compile Include="Wrappers\EfWrapper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SportsFeed.Models\SportsFeed.Models.csproj">
+      <Project>{818b0b9a-73e8-48b4-aa1d-efbf27c24068}</Project>
+      <Name>SportsFeed.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>

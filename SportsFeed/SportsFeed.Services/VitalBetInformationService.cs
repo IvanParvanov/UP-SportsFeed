@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
 
-using SportsFeed.Data.Models.Contracts;
+using SportsFeed.Models.Models;
+using SportsFeed.Models.Models.Contracts;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.Services
 {
     public class VitalBetInformationService : IBetInformationService
     {
-        public IEnumerable<ISport> GetData()
+        public IEnumerable<Sport> GetData()
         {
-            throw new NotImplementedException();
+            var text = File.ReadAllText("D:\\SampleData.xml");
+            var serializer = new XmlSerializer(typeof(XmlSports));
+            var memStream = new MemoryStream(Encoding.UTF8.GetBytes(text));
+            var result = (XmlSports)serializer.Deserialize(memStream);
+
+            return result.Sports;
         }
     }
 }

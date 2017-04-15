@@ -1,6 +1,7 @@
 using System.Data.Entity;
 
 using SportsFeed.Data.Contracts;
+using SportsFeed.Models.Models;
 
 namespace SportsFeed.Data
 {
@@ -16,5 +17,15 @@ namespace SportsFeed.Data
         {
             return base.Set<T>();
         }
+
+        public virtual IDbSet<Sport> Sports { get; set; }
+
+        public virtual IDbSet<Event> Events { get; set; }
+
+        public virtual IDbSet<Match> Matches { get; set; }
+
+        public virtual IDbSet<Bet> Bets { get; set; }
+
+        public virtual IDbSet<Odd> Odds { get; set; }
     }
 }

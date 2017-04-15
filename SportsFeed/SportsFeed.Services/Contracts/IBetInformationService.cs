@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 
-using SportsFeed.Data.Models.Contracts;
+using SportsFeed.Models.Models;
+using SportsFeed.Models.Models.Contracts;
 
 namespace SportsFeed.Services.Contracts
 {
     public interface IBetInformationService
     {
-        IEnumerable<ISport> GetData();
+        IEnumerable<Sport> GetData();
     }
 }

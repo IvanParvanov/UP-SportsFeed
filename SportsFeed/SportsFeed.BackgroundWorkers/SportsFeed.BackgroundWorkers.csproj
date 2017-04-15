@@ -63,6 +63,10 @@
       <Project>{d52cafea-1d3c-43e9-b7d8-aac14992140f}</Project>
       <Name>SportsFeed.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SportsFeed.Models\SportsFeed.Models.csproj">
+      <Project>{818B0B9A-73E8-48B4-AA1D-EFBF27C24068}</Project>
+      <Name>SportsFeed.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SportsFeed.Services\SportsFeed.Services.csproj">
       <Project>{22a35cf4-c5c3-4f24-a797-e6f0af5930a8}</Project>
       <Name>SportsFeed.Services</Name>

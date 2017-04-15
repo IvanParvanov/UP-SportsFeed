@@ -17,7 +17,7 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs
             this.Schedule<UpdateDatabaseJob>()
                 .ToRunNow()
                 .AndEvery(DatabaseUpdateIntervalMinutes)
-                .Seconds();
+                .Minutes();
 
             //this.Schedule<CleanDatabaseJob>()
             //    .ToRunNow()
