@@ -2,7 +2,7 @@
 
 using FluentScheduler;
 
-namespace SportsFeed.WebClient.ScheduledJobs.Jobs
+namespace SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs
 {
     public class CleanDatabaseJob : IJob
     {

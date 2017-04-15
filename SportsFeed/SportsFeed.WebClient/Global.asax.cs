@@ -8,10 +8,10 @@ using FluentScheduler;
 
 using Microsoft.AspNet.SignalR;
 
+using SportsFeed.BackgroundWorkers.ScheduledJobs;
 using SportsFeed.Data;
 using SportsFeed.WebClient.App_Start;
 using SportsFeed.WebClient.Ninject.Resolvers;
-using SportsFeed.WebClient.ScheduledJobs;
 
 namespace SportsFeed.WebClient
 {

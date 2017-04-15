@@ -1,7 +1,5 @@
 using System.Data.Entity.Migrations;
 
-using SportsFeed.Data.Contracts;
-
 namespace SportsFeed.Data.Migrations
 {
     public sealed class Configuration : DbMigrationsConfiguration<SportsFeedDbContext>

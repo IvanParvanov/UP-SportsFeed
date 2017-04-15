@@ -4,9 +4,9 @@ using FluentScheduler;
 
 using Ninject.Modules;
 
-using SportsFeed.WebClient.ScheduledJobs.Helpers;
-using SportsFeed.WebClient.ScheduledJobs.Helpers.Contracts;
-using SportsFeed.WebClient.ScheduledJobs.Jobs;
+using SportsFeed.BackgroundWorkers.Helpers;
+using SportsFeed.BackgroundWorkers.Helpers.Contracts;
+using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
 
 namespace SportsFeed.WebClient.Ninject
 {

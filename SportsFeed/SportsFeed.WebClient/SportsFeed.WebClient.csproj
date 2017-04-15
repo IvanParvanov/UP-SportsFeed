@@ -205,11 +205,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="ScheduledJobs\Helpers\Contracts\IHostingEnvironmentRegister.cs" />
-    <Compile Include="ScheduledJobs\Helpers\HostingEnvironmentRegister.cs" />
-    <Compile Include="ScheduledJobs\Jobs\CleanDatabaseJob.cs" />
-    <Compile Include="ScheduledJobs\Jobs\UpdateDatabaseJob.cs" />
-    <Compile Include="ScheduledJobs\UpdateDatabaseRegistry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,9 +264,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SportsFeed.BackgroundWorkers\SportsFeed.BackgroundWorkers.csproj">
+      <Project>{c063876b-231c-44e2-9a40-17d22b5e529c}</Project>
+      <Name>SportsFeed.BackgroundWorkers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SportsFeed.Data\SportsFeed.Data.csproj">
       <Project>{d52cafea-1d3c-43e9-b7d8-aac14992140f}</Project>
       <Name>SportsFeed.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SportsFeed.Services\SportsFeed.Services.csproj">
+      <Project>{22a35cf4-c5c3-4f24-a797-e6f0af5930a8}</Project>
+      <Name>SportsFeed.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

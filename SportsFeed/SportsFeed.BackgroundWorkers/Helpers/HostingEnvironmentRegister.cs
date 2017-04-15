@@ -1,8 +1,8 @@
 ﻿using System.Web.Hosting;
 
-using SportsFeed.WebClient.ScheduledJobs.Helpers.Contracts;
+using SportsFeed.BackgroundWorkers.Helpers.Contracts;
 
-namespace SportsFeed.WebClient.ScheduledJobs.Helpers
+namespace SportsFeed.BackgroundWorkers.Helpers
 {
     public class HostingEnvironmentRegister : IHostingEnvironmentRegister
     {

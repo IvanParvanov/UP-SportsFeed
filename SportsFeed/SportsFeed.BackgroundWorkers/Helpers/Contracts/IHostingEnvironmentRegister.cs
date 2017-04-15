@@ -1,6 +1,6 @@
 ﻿using System.Web.Hosting;
 
-namespace SportsFeed.WebClient.ScheduledJobs.Helpers.Contracts
+namespace SportsFeed.BackgroundWorkers.Helpers.Contracts
 {
     public interface IHostingEnvironmentRegister
     {

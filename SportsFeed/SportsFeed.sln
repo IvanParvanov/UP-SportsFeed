@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.WebClient", "SportsFeed.WebClient\SportsFeed.WebClient.csproj", "{C732F087-BA43-4243-9D6A-D6D61F1B5E2E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Data", "SportsFeed.Data\SportsFeed.Data.csproj", "{D52CAFEA-1D3C-43E9-B7D8-AAC14992140F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Services", "SportsFeed.Services\SportsFeed.Services.csproj", "{22A35CF4-C5C3-4F24-A797-E6F0AF5930A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.BackgroundWorkers", "SportsFeed.BackgroundWorkers\SportsFeed.BackgroundWorkers.csproj", "{C063876B-231C-44E2-9A40-17D22B5E529C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{22A35CF4-C5C3-4F24-A797-E6F0AF5930A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22A35CF4-C5C3-4F24-A797-E6F0AF5930A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22A35CF4-C5C3-4F24-A797-E6F0AF5930A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C063876B-231C-44E2-9A40-17D22B5E529C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C063876B-231C-44E2-9A40-17D22B5E529C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C063876B-231C-44E2-9A40-17D22B5E529C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C063876B-231C-44E2-9A40-17D22B5E529C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
