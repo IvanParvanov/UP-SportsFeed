@@ -2,9 +2,9 @@ using System.Xml.Serialization;
 
 using Microsoft.Build.Framework;
 
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models.Contracts;
 
-namespace SportsFeed.Models.Models.Base
+namespace SportsFeed.Models.Base
 {
     public abstract class ExternalEntity : IExternalEntity
     {

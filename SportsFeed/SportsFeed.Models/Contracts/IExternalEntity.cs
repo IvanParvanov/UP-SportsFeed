@@ -1,4 +1,4 @@
-namespace SportsFeed.Models.Models.Contracts
+namespace SportsFeed.Models.Contracts
 {
     public interface IExternalEntity : IIdentifiable
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models.Base;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models.Base;
+using SportsFeed.Models.Contracts;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     public class Event : ExternalEntity, IEvent
     {
@@ -26,6 +26,6 @@ namespace SportsFeed.Models.Models
         public int SportId { get; set; }
 
         [XmlIgnore]
-        public Sport Sport { get; set; }
+        public virtual Sport Sport { get; set; }
     }
 }

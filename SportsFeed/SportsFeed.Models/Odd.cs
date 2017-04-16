@@ -1,9 +1,9 @@
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models.Base;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models.Base;
+using SportsFeed.Models.Contracts;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     public class Odd : ExternalEntity, IOdd
     {
@@ -14,6 +14,6 @@ namespace SportsFeed.Models.Models
         public int BetId { get; set; }
 
         [XmlIgnore]
-        public Bet Bet { get; set; }
+        public virtual Bet Bet { get; set; }
     }
 }

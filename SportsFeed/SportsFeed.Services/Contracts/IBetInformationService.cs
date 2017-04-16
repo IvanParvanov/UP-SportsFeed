@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using SportsFeed.Models.Models;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models;
 
 namespace SportsFeed.Services.Contracts
 {

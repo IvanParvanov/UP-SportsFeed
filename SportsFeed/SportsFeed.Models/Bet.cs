@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models.Base;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models.Base;
+using SportsFeed.Models.Contracts;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     public class Bet : ExternalEntity, IBet
     {
@@ -23,6 +23,6 @@ namespace SportsFeed.Models.Models
         public int MatchId { get; set; }
 
         [XmlIgnore]
-        public Match Match { get; set; }
+        public virtual Match Match { get; set; }
     }
 }

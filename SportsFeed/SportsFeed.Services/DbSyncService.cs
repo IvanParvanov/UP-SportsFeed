@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
 
 using Bytes2you.Validation;
 
 using SportsFeed.Data.Contracts;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models;
+using SportsFeed.Models.Contracts;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.Services
@@ -25,16 +27,17 @@ namespace SportsFeed.Services
 
         public IEnumerable<IExternalEntity> SyncDatabase()
         {
-            var webEntities = this.betService.GetData();
+            var externalEntities = this.betService.GetData();
 
-            foreach (var sport in webEntities)
+            var syncDatabase = externalEntities as Sport[] ?? externalEntities.ToArray();
+            foreach (var sport in syncDatabase)
             {
                 this.dbContext.Sports.AddOrUpdate(sport);
-
-                this.dbContext.SaveChanges();
             }
 
-            return webEntities;
+            this.dbContext.SaveChanges();
+
+            return syncDatabase;
         }
     }
 }

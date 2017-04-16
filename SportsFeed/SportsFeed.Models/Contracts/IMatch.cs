@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using SportsFeed.Models.Models.Enums;
+using SportsFeed.Models.Enums;
 
-namespace SportsFeed.Models.Models.Contracts
+namespace SportsFeed.Models.Contracts
 {
     public interface IMatch : IExternalEntity
     {

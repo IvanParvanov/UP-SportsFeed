@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models.Base;
-using SportsFeed.Models.Models.Contracts;
-using SportsFeed.Models.Models.Enums;
+using SportsFeed.Models.Base;
+using SportsFeed.Models.Contracts;
+using SportsFeed.Models.Enums;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     public class Match : ExternalEntity, IMatch
     {
@@ -28,6 +28,6 @@ namespace SportsFeed.Models.Models
         public int EventId { get; set; }
 
         [XmlIgnore]
-        public Event Event { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

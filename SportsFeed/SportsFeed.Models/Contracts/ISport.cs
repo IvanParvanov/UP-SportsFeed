@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SportsFeed.Models.Models.Contracts
+namespace SportsFeed.Models.Contracts
 {
     public interface ISport : IExternalEntity
     {

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     [XmlRoot("XmlSports")]
     public class XmlSports

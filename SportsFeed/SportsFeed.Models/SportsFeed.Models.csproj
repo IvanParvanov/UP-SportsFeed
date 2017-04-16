@@ -50,21 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Base\ExternalEntity.cs" />
-    <Compile Include="Models\Bet.cs" />
-    <Compile Include="Models\Contracts\IBet.cs" />
-    <Compile Include="Models\Contracts\IEvent.cs" />
-    <Compile Include="Models\Contracts\IExternalEntity.cs" />
-    <Compile Include="Models\Contracts\IIdentifiable.cs" />
-    <Compile Include="Models\Contracts\IMatch.cs" />
-    <Compile Include="Models\Contracts\IOdd.cs" />
-    <Compile Include="Models\Contracts\ISport.cs" />
-    <Compile Include="Models\Enums\MatchType.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\Match.cs" />
-    <Compile Include="Models\Odd.cs" />
-    <Compile Include="Models\Sport.cs" />
-    <Compile Include="Models\XmlSports.cs" />
+    <Compile Include="Base\ExternalEntity.cs" />
+    <Compile Include="Bet.cs" />
+    <Compile Include="Contracts\IBet.cs" />
+    <Compile Include="Contracts\IEvent.cs" />
+    <Compile Include="Contracts\IExternalEntity.cs" />
+    <Compile Include="Contracts\IIdentifiable.cs" />
+    <Compile Include="Contracts\IMatch.cs" />
+    <Compile Include="Contracts\IOdd.cs" />
+    <Compile Include="Contracts\ISport.cs" />
+    <Compile Include="Enums\MatchType.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Match.cs" />
+    <Compile Include="Odd.cs" />
+    <Compile Include="Sport.cs" />
+    <Compile Include="XmlSports.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

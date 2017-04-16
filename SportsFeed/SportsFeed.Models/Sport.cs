@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models.Base;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models.Base;
+using SportsFeed.Models.Contracts;
 
-namespace SportsFeed.Models.Models
+namespace SportsFeed.Models
 {
     public class Sport : ExternalEntity, ISport
     {

@@ -1,7 +1,7 @@
 using System.Data.Entity;
 
 using SportsFeed.Data.Contracts;
-using SportsFeed.Models.Models;
+using SportsFeed.Models;
 
 namespace SportsFeed.Data
 {

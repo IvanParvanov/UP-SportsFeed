@@ -2,7 +2,7 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-using SportsFeed.Models.Models;
+using SportsFeed.Models;
 
 namespace SportsFeed.Data.Contracts
 {

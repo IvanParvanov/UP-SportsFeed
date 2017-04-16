@@ -3,8 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-using SportsFeed.Models.Models;
-using SportsFeed.Models.Models.Contracts;
+using SportsFeed.Models;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.Services
