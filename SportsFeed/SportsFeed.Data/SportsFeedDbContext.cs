@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 
 using SportsFeed.Data.Contracts;
 using SportsFeed.Models;
@@ -11,6 +13,7 @@ namespace SportsFeed.Data
             : base("name=SportsFeedDbContext")
         {
             this.Database.CreateIfNotExists();
+            this.Configuration.AutoDetectChangesEnabled = false;
         }
 
         public new IDbSet<T> Set<T>() where T : class
@@ -27,5 +30,16 @@ namespace SportsFeed.Data
         public virtual IDbSet<Bet> Bets { get; set; }
 
         public virtual IDbSet<Odd> Odds { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Sport>()
+                        .Property(x => x.Name)
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("Index") { IsUnique = true } }));
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

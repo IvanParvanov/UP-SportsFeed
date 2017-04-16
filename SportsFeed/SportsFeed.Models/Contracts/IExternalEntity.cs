@@ -2,7 +2,7 @@ namespace SportsFeed.Models.Contracts
 {
     public interface IExternalEntity : IIdentifiable
     {
-        int ExternalId { get; set; }
+        //int Id { get; set; }
 
         string Name { get; set; }
     }

@@ -1,6 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
-
-using Microsoft.Build.Framework;
 
 using SportsFeed.Models.Contracts;
 
@@ -8,10 +8,13 @@ namespace SportsFeed.Models.Base
 {
     public abstract class ExternalEntity : IExternalEntity
     {
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
 
         [XmlAttribute("ID")]
-        public int ExternalId { get; set; }
+        [Index(IsUnique = true)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
 
         [Required]
         [XmlAttribute("Name")]

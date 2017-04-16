@@ -14,10 +14,12 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs
             this.UseUtcTime();
             this.NonReentrantAsDefault();
 
+            // Workaround for https://github.com/fluentscheduler/FluentScheduler/issues/107
             this.Schedule<UpdateDatabaseJob>()
-                .ToRunNow()
-                .AndEvery(DatabaseUpdateIntervalMinutes)
-                .Minutes();
+                //.ToRunEvery(DatabaseUpdateIntervalMinutes)
+                .ToRunNow();
+            //.AndEvery(DatabaseUpdateIntervalMinutes)
+            //.Minutes();
 
             //this.Schedule<CleanDatabaseJob>()
             //    .ToRunNow()

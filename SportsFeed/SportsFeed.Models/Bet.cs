@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using SportsFeed.Models.Base;
@@ -24,5 +26,29 @@ namespace SportsFeed.Models
 
         [XmlIgnore]
         public virtual Match Match { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Bet;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.IsLive == other.IsLive
+                   && this.MatchId == other.MatchId
+                   && this.Name == other.Name
+                   && this.Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = 17;
+            hash = (hash * 7) + this.IsLive.GetHashCode();
+            hash = (hash * 7) + this.MatchId.GetHashCode();
+            hash = (hash * 7) + this.Name.GetHashCode();
+            hash = (hash * 7) + this.Id.GetHashCode();
+            return hash;
+        }
     }
 }

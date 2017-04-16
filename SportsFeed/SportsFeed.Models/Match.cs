@@ -29,5 +29,31 @@ namespace SportsFeed.Models
 
         [XmlIgnore]
         public virtual Event Event { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Match;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.Type == other.Type
+                   && this.StartDate == other.StartDate
+                   && this.EventId == other.EventId
+                   && this.Name == other.Name
+                   && this.Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = 17;
+            hash = (hash * 7) + this.Type.GetHashCode();
+            hash = (hash * 7) + this.StartDate.GetHashCode();
+            hash = (hash * 7) + this.EventId.GetHashCode();
+            hash = (hash * 7) + this.Name.GetHashCode();
+            hash = (hash * 7) + this.Id.GetHashCode();
+            return hash;
+        }
     }
 }
