@@ -3,11 +3,13 @@
 using Microsoft.AspNet.SignalR.Hubs;
 
 using Ninject.Activation;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
 using SportsFeed.Data;
 using SportsFeed.Data.Contracts;
+using SportsFeed.Data.Results;
 
 namespace SportsFeed.WebClient.Ninject
 {
@@ -25,6 +27,10 @@ namespace SportsFeed.WebClient.Ninject
 
             this.Bind<ISportsFeedDbContext>().To<SportsFeedDbContext>()
                 .When(HasAncestorAssignableFrom<IJob>)
+                .InSingletonScope();
+
+            this.Bind<IDataModifiedResultFactory>()
+                .ToFactory()
                 .InSingletonScope();
         }
 

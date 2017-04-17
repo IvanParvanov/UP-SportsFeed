@@ -9,6 +9,7 @@ namespace SportsFeed.WebClient
         {
             bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
                                                                      "~/Scripts/jquery-{version}.js",
+                                                                     "~/Scripts/jquery.unobtrusive-ajax.min.js",
                                                                      "~/Scripts/jquery.signalR-2.2.1.min.js",
                                                                      "~/Scripts/bootstrap.js",
                                                                         "~/Scripts/respond.js"

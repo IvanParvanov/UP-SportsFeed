@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IBetInformationService.cs" />
     <Compile Include="Contracts\IGroupBySportService.cs" />
+    <Compile Include="Contracts\ISportsService.cs" />
     <Compile Include="DbSyncService.cs" />
     <Compile Include="Contracts\IDbSyncService.cs" />
     <Compile Include="Contracts\IWebRequestService.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Results\IDatabaseUpdatedResult.cs" />
     <Compile Include="Factories\IDbUpdatedResultFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SportsService.cs" />
     <Compile Include="VitalBetInformationService.cs" />
     <Compile Include="WebRequestService.cs" />
   </ItemGroup>
