@@ -8,6 +8,7 @@ using Ninject.Modules;
 using SportsFeed.BackgroundWorkers.Helpers;
 using SportsFeed.BackgroundWorkers.Helpers.Contracts;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
+using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs.Contracts;
 using SportsFeed.Services;
 using SportsFeed.Services.Contracts;
 using SportsFeed.Services.Factories;
@@ -28,12 +29,15 @@ namespace SportsFeed.WebClient.Ninject
 
             this.Bind<IJob>()
                 .To<UpdateDatabaseJob>()
-                .InSingletonScope()
-                .Named(typeof(UpdateDatabaseJob).Name);
+                .InSingletonScope();
 
             this.Bind<UpdateDatabaseJob>()
                 .ToSelf()
-                .Named(typeof(UpdateDatabaseJob).Name);
+                .InSingletonScope();
+
+            this.Bind<INotifyDatabaseUpdated>()
+                .To<UpdateDatabaseJob>()
+                .InSingletonScope();
 
             this.Rebind<IBetInformationService>()
                 .To<VitalBetInformationService>()

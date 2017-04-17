@@ -20,7 +20,7 @@ namespace SportsFeed.WebClient.Ninject.Resolvers
         public IJob GetJobInstance<T>() where T : IJob
         {
             var serviceType = typeof(T);
-            var instance = (T)this.kernel.Get(serviceType, serviceType.Name);
+            var instance = (T)this.kernel.Get(serviceType);
 
             return instance;
         }
