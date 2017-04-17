@@ -4,6 +4,8 @@ namespace SportsFeed.Models.Contracts
     {
         double Value { get; set; }
 
+        string SpecialBetValue { get; set; }
+
         int BetId { get; set; }
 
         Bet Bet { get; set; }

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 using Bytes2you.Validation;
 
+using SportsFeed.Models;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.WebClient.Controllers
@@ -23,7 +24,9 @@ namespace SportsFeed.WebClient.Controllers
         public async Task<ActionResult> Index(string s = DefaultSportName)
         {
             var sport = await this.sportsService.GetSportByNameAsync(s);
-            
+
+            sport = sport ?? new Sport();
+
             if (this.Request.IsAjaxRequest())
             {
                 return this.PartialView("_Index", sport);

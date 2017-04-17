@@ -4,11 +4,59 @@
     ViewBag.Title = "_Index";
 }
 
-<div class="jumbotron">
-    <h1>@Model.Name</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p>
-        <a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a>
-    </p>
-</div>
+<h1>@Model.Name matches in the next 24 hours</h1>
+@if (!Model.Events.Any())
+{
+    <hr/>
+    <h4>No upcoming/live @Model.Name events</h4>
+}
+else
+{
+    <div class="list-group" id="events">
+        @foreach (var ev in Model.Events)
+        {
+            <div class="list-group-item" id="event-@ev.Id">
+                <h2 class="list-group-item-heading">@ev.Name</h2>
+                <hr/>
+                @foreach (var match in ev.Matches)
+                {
+                    <div class="panel panel-default" id="match-@match.Id">
+                        <div class="panel-heading pointer" data-toggle="collapse" data-target="#match-toggle-@match.Id">
+                            <h4>@match.Name <strong class="pull-right">@match.StartDate</strong></h4>
+                        </div>
+                        <div class="panel-body collapse" id="match-toggle-@match.Id">
 
+                            @foreach (var bet in match.Bets)
+                            {
+                                <table id="bet-@bet.Id" class="table table-bordered table-hover table-responsive table-striped table-condensed">
+                                    <tr class="success">
+                                        <th colspan="@bet.Odds.Count">
+                                            <h4>
+                                                <strong>@bet.Name</strong>
+                                            </h4>
+                                        </th>
+                                    </tr>
+                                    @foreach (var odd in bet.Odds)
+                                    {
+                                        <tr id="odd-@odd.Id">
+                                            <td >
+                                                <span>@odd.Name</span>
+                                                @if (odd.SpecialBetValue != null)
+                                                {
+                                                    <span class="badge"> @odd.SpecialBetValue</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <strong>@odd.Value</strong>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}

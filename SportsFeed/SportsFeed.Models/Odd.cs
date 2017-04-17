@@ -14,6 +14,9 @@ namespace SportsFeed.Models
         [XmlAttribute("Value")]
         public double Value { get; set; }
 
+        [XmlAttribute("SpecialBetValue")]
+        public string SpecialBetValue { get; set; }
+
         [XmlIgnore]
         public int BetId { get; set; }
 
@@ -32,6 +35,7 @@ namespace SportsFeed.Models
 
             return Math.Abs(this.Value - other.Value) < 0.00001
                    && this.BetId == other.BetId
+                   && this.SpecialBetValue == other.SpecialBetValue
                    && this.Name == other.Name
                    && this.Id == other.Id;
         }
@@ -41,6 +45,10 @@ namespace SportsFeed.Models
             var hash = 17;
             hash = (hash * 7) + this.Value.GetHashCode();
             hash = (hash * 7) + this.BetId.GetHashCode();
+            if (this.SpecialBetValue != null)
+            {
+                hash = (hash * 7) + this.SpecialBetValue.GetHashCode();
+            }
             hash = (hash * 7) + this.Name.GetHashCode();
             hash = (hash * 7) + this.Id.GetHashCode();
             return hash;
