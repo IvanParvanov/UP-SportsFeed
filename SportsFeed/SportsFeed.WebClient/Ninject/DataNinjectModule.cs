@@ -29,6 +29,10 @@ namespace SportsFeed.WebClient.Ninject
                 .When(HasAncestorAssignableFrom<IJob>)
                 .InSingletonScope();
 
+            this.Bind<ISportsFeedDbContext>().To<SportsFeedDbContext>()
+                .InTransientScope()
+                .Named(NinjectNamings.Transient);
+
             this.Bind<IDataModifiedResultFactory>()
                 .ToFactory()
                 .InSingletonScope();

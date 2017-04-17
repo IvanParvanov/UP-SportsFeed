@@ -209,9 +209,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\BettingHub.cs" />
+    <Compile Include="Hubs\Clients\IDbUpdatesNotifiedClient.cs" />
     <Compile Include="Models\Dtos\DbChangeDto.cs" />
     <Compile Include="Ninject\BusinessNinjectModule.cs" />
     <Compile Include="Ninject\DataNinjectModule.cs" />
+    <Compile Include="Ninject\NinjectNamings.cs" />
     <Compile Include="Ninject\Resolvers\NinjectFluentSchedulerDependencyResolver.cs" />
     <Compile Include="Ninject\Resolvers\NinjectSignalRDepencencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

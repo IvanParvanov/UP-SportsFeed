@@ -4,23 +4,23 @@ using SportsFeed.Services.Results;
 
 namespace SportsFeed.BackgroundWorkers.EventArgs
 {
-    public class DatabaseUpdatedEventArgs
+    public class DatabaseCleanedEventArgs
     {
-        private readonly IDatabaseUpdatedResult changes;
+        private readonly IDatabaseCleanedResult changes;
 
-        public DatabaseUpdatedEventArgs()
+        public DatabaseCleanedEventArgs()
         {
-            this.changes = new DatabaseUpdatedResult();
+            this.changes = new DatabaseCleanedResult();
         }
 
-        public DatabaseUpdatedEventArgs(IDatabaseUpdatedResult changes)
+        public DatabaseCleanedEventArgs(IDatabaseCleanedResult changes)
         {
             Guard.WhenArgument(changes, nameof(changes)).IsNull().Throw();
 
             this.changes = changes;
         }
 
-        public IDatabaseUpdatedResult Changes
+        public IDatabaseCleanedResult Changes
         {
             get
             {

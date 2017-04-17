@@ -53,11 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArgs\DatabaseCleanedEventArgs.cs" />
     <Compile Include="EventArgs\DatabaseUpdatedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Contracts\IHostingEnvironmentRegister.cs" />
     <Compile Include="Helpers\HostingEnvironmentRegister.cs" />
+    <Compile Include="ScheduledJobs\Jobs\Base\JobBase.cs" />
     <Compile Include="ScheduledJobs\Jobs\CleanDatabaseJob.cs" />
+    <Compile Include="ScheduledJobs\Jobs\Contracts\INotifyDatabaseCleanup.cs" />
     <Compile Include="ScheduledJobs\Jobs\Contracts\INotifyDatabaseUpdated.cs" />
     <Compile Include="ScheduledJobs\Jobs\UpdateDatabaseJob.cs" />
     <Compile Include="ScheduledJobs\UpdateDatabaseRegistry.cs" />

@@ -1,44 +1,34 @@
 ﻿using System;
-using System.Web.Hosting;
 
 using Bytes2you.Validation;
 
-using FluentScheduler;
-
 using SportsFeed.BackgroundWorkers.EventArgs;
 using SportsFeed.BackgroundWorkers.Helpers.Contracts;
+using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs.Base;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs.Contracts;
 using SportsFeed.Services.Contracts;
 
 namespace SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs
 {
-    public class UpdateDatabaseJob : IJob, IRegisteredObject, INotifyDatabaseUpdated
+    public class UpdateDatabaseJob : JobBase, INotifyDatabaseUpdated
     {
         public event EventHandler<DatabaseUpdatedEventArgs> DatabaseUpdated;
 
         private readonly IDbSyncService dbSyncService;
 
-        private readonly IHostingEnvironmentRegister hostingEnvironment;
-
-        private readonly object locker = new object();
-
-        private bool shuttingDown;
-
-        public UpdateDatabaseJob(IDbSyncService dbSyncService, IHostingEnvironmentRegister hostingEnvironment)
+        public UpdateDatabaseJob(IHostingEnvironmentRegister hostingEnvironment, IDbSyncService dbSyncService)
+            :base(hostingEnvironment)
         {
             Guard.WhenArgument(dbSyncService, nameof(dbSyncService)).IsNull().Throw();
-            Guard.WhenArgument(hostingEnvironment, nameof(hostingEnvironment)).IsNull().Throw();
 
             this.dbSyncService = dbSyncService;
-            this.hostingEnvironment = hostingEnvironment;
-            this.hostingEnvironment.Register(this);
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            lock (this.locker)
+            lock (this.Locker)
             {
-                if (this.shuttingDown)
+                if (this.ShuttingDown)
                 {
                     return;
                 }
@@ -47,16 +37,6 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs
 
                 this.DatabaseUpdated?.Invoke(this, new DatabaseUpdatedEventArgs(changes));
             }
-        }
-
-        public void Stop(bool immediate)
-        {
-            lock (this.locker)
-            {
-                this.shuttingDown = true;
-            }
-
-            this.hostingEnvironment.Unregister(this);
         }
 
         public bool HasSubscribers()

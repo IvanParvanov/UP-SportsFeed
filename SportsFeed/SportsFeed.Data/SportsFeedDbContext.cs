@@ -15,6 +15,7 @@ namespace SportsFeed.Data
         {
             this.Database.CreateIfNotExists();
             this.Configuration.AutoDetectChangesEnabled = false;
+            this.Database.Initialize(force: false);
             //this.Database.Log = this.Write;
         }
 

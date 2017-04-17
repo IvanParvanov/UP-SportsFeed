@@ -5,27 +5,18 @@ $(document).ready(function () {
     bettingHub = $.connection.bettingHub;
 
     bettingHub.client.sendUpdateData = function (data) {
+        console.log("MODIFIED");
         console.log(data);
     };
 
-    // contosoChatHubProxy.server.leaveGroup(groupName);
+    bettingHub.client.sendDeleteData = function(data) {
+        console.log("DELETED");
+        console.log(data);
+    };
+
     $.connection.hub.start().done(function () {
         bettingHub.server.joinGroup(previousGroup);
     });
-
-    //var connection = $.connection('/betting');
-
-    //connection.received(function (data) {
-    //    console.log(data);
-    //});
-
-    //connection.start().done(function () {
-    //    $("#broadcast").click(function () {
-    //        connection.server.joinGroup("Soccer");
-
-    //        //connection.send($('#msg').val());
-    //    });
-    //});
 });
 
 function changeRoom(group) {

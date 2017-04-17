@@ -8,11 +8,16 @@ namespace SportsFeed.Services.Factories
     {
         IDatabaseUpdatedResult CreateDatabaseUpdatedResult();
 
-        IDatabaseUpdatedResult CreateDatabaseUpdatedResult(
-            ISet<int> sportIds,
-            ISet<int> eventIds,
-            ISet<int> matchIds,
-            ISet<int> betIds,
-            ISet<int> oddIds);
+        IDatabaseUpdatedResult CreateDatabaseUpdatedResult(ICollection<int> sportIds,
+                                                           ICollection<int> eventIds,
+                                                           ICollection<int> matchIds,
+                                                           ICollection<int> betIds,
+                                                           ICollection<int> oddIds);
+
+        IDatabaseCleanedResult CreateDatabaseCleanedResult(ICollection<int> eventIds,
+                                                           ICollection<int> matchIds,
+                                                           ICollection<int> betIds);
+
+        IDatabaseCleanedResult CreateDatabaseCleanedResult();
     }
 }

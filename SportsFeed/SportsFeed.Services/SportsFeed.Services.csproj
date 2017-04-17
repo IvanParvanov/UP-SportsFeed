@@ -48,11 +48,15 @@
     <Compile Include="Contracts\IBetInformationService.cs" />
     <Compile Include="Contracts\IGroupBySportService.cs" />
     <Compile Include="Contracts\ISportsService.cs" />
+    <Compile Include="DbCleanupService.cs" />
     <Compile Include="DbSyncService.cs" />
     <Compile Include="Contracts\IDbSyncService.cs" />
     <Compile Include="Contracts\IWebRequestService.cs" />
     <Compile Include="GroupBySportService.cs" />
+    <Compile Include="Contracts\IDbCleanupService.cs" />
+    <Compile Include="Results\DatabaseCleanedResult.cs" />
     <Compile Include="Results\DatabaseUpdatedResult.cs" />
+    <Compile Include="Results\IDatabaseCleanedResult.cs" />
     <Compile Include="Results\IDatabaseUpdatedResult.cs" />
     <Compile Include="Factories\IDbUpdatedResultFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
