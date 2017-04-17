@@ -1,12 +1,9 @@
-﻿using System;
-
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using FluentScheduler;
 
 using Ninject;
 
-using SportsFeed.BackgroundWorkers.EventArgs;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
 
 namespace SportsFeed.BackgroundWorkers.ScheduledJobs
@@ -34,10 +31,9 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs
                           })
                 .ToRunNow();
 
-            //this.Schedule<CleanDatabaseJob>()
-            //    .ToRunNow()
-            //    .AndEvery(DatabaseCleanupIntervalMinutes)
-            //    .Minutes();
+            // this.Schedule<CleanDatabaseJob>()
+            //     .ToRunEvery(DatabaseCleanupIntervalMinutes)
+            //     .Minutes();
         }
     }
 }

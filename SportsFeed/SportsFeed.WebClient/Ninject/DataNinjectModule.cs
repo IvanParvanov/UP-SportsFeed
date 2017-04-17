@@ -26,10 +26,6 @@ namespace SportsFeed.WebClient.Ninject
             this.Bind<ISportsFeedDbContext>().To<SportsFeedDbContext>()
                 .When(HasAncestorAssignableFrom<IJob>)
                 .InSingletonScope();
-
-            this.Bind<ISaveable>()
-               .To<SportsFeedDbContext>()
-               .InRequestScope();
         }
 
         private static bool HasAncestorAssignableFrom<T>(IRequest request)

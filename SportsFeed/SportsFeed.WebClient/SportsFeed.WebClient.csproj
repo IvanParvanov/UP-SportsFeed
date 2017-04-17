@@ -208,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\BettingHub.cs" />
     <Compile Include="Ninject\BusinessNinjectModule.cs" />
     <Compile Include="Ninject\DataNinjectModule.cs" />
     <Compile Include="Ninject\Resolvers\NinjectFluentSchedulerDependencyResolver.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -253,7 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Hubs\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

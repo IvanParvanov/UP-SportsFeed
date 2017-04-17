@@ -2,6 +2,7 @@
 
 using FluentScheduler;
 
+using Ninject;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
@@ -27,17 +28,17 @@ namespace SportsFeed.WebClient.Ninject
                 .To<HostingEnvironmentRegister>()
                 .InSingletonScope();
 
-            this.Bind<IJob>()
-                .To<UpdateDatabaseJob>()
-                .InSingletonScope();
-
             this.Bind<UpdateDatabaseJob>()
                 .ToSelf()
                 .InSingletonScope();
 
             this.Bind<INotifyDatabaseUpdated>()
-                .To<UpdateDatabaseJob>()
-                .InSingletonScope();
+                .ToMethod(ctx =>
+                          {
+                              var job = ctx.Kernel.Get<UpdateDatabaseJob>();
+
+                              return job;
+                          });
 
             this.Rebind<IBetInformationService>()
                 .To<VitalBetInformationService>()
