@@ -13,7 +13,6 @@ namespace SportsFeed.Data
         public SportsFeedDbContext()
             : base("name=SportsFeedDbContext")
         {
-            this.Database.CreateIfNotExists();
             this.Configuration.AutoDetectChangesEnabled = false;
             this.Database.Initialize(force: false);
             //this.Database.Log = this.Write;

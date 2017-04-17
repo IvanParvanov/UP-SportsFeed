@@ -24,4 +24,5 @@ function changeRoom(group) {
     bettingHub.server.joinGroup(group);
 
     previousGroup = group;
+    window.scrollTo(0, 0);
 }
