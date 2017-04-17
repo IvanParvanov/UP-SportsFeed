@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IBetInformationService.cs" />
+    <Compile Include="Contracts\IGroupBySportService.cs" />
     <Compile Include="DbSyncService.cs" />
     <Compile Include="Contracts\IDbSyncService.cs" />
     <Compile Include="Contracts\IWebRequestService.cs" />
+    <Compile Include="GroupBySportService.cs" />
     <Compile Include="Results\DatabaseUpdatedResult.cs" />
     <Compile Include="Results\IDatabaseUpdatedResult.cs" />
     <Compile Include="Factories\IDbUpdatedResultFactory.cs" />

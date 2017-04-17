@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     var bettingHub = $.connection.bettingHub;
 
-    bettingHub.client.showNotification = function (message) {
-        console.log(message);
+    bettingHub.client.sendUpdateData = function (data) {
+        console.log(data);
     };
 
     // contosoChatHubProxy.server.leaveGroup(groupName);

@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
+
+using Newtonsoft.Json;
 
 using SportsFeed.Models.Base;
 using SportsFeed.Models.Contracts;
@@ -22,12 +25,16 @@ namespace SportsFeed.Models
         public MatchType Type { get; set; }
 
         [XmlElement("Bet")]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual HashSet<Bet> Bets { get; set; }
 
         [XmlIgnore]
         public int EventId { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Event Event { get; set; }
 
         public override bool Equals(object obj)

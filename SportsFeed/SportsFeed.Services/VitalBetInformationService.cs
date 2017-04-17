@@ -27,7 +27,8 @@ namespace SportsFeed.Services
 
         public IList<Sport> GetData()
         {
-            var text = File.ReadAllText(@"D:\SampleDataLite.xml");//this.webRequestService.DownloadString(VitalBetApiUrl);
+           // var text = File.ReadAllText(@"D:\SampleDataLite.xml");
+            var text = this.webRequestService.DownloadString(VitalBetApiUrl);
 
             var serializer = new XmlSerializer(typeof(XmlSports));
             var memStream = new MemoryStream(Encoding.UTF8.GetBytes(text));

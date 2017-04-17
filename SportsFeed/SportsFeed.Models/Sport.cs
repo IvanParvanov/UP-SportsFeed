@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
+
+using Newtonsoft.Json;
 
 using SportsFeed.Models.Base;
 using SportsFeed.Models.Contracts;
@@ -14,6 +17,8 @@ namespace SportsFeed.Models
         }
 
         [XmlElement("Event")]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual HashSet<Event> Events { get; set; }
 
         public override bool Equals(object obj)

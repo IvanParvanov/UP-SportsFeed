@@ -58,5 +58,10 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs
 
             this.hostingEnvironment.Unregister(this);
         }
+
+        public bool HasSubscribers()
+        {
+            return this.DatabaseUpdated != null;
+        }
     }
 }

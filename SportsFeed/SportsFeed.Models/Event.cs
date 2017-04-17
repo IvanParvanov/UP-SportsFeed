@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
+
+using Newtonsoft.Json;
 
 using SportsFeed.Models.Base;
 using SportsFeed.Models.Contracts;
@@ -20,12 +23,16 @@ namespace SportsFeed.Models
         public int CategoryId { get; set; }
 
         [XmlElement("Match")]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual HashSet<Match> Matches { get; set; }
 
         [XmlIgnore]
         public int SportId { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Sport Sport { get; set; }
 
         public override bool Equals(object obj)

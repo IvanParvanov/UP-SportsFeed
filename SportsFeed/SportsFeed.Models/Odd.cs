@@ -1,5 +1,8 @@
 using System;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
+
+using Newtonsoft.Json;
 
 using SportsFeed.Models.Base;
 using SportsFeed.Models.Contracts;
@@ -15,6 +18,8 @@ namespace SportsFeed.Models
         public int BetId { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Bet Bet { get; set; }
 
         public override bool Equals(object obj)

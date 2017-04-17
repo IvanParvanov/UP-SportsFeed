@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 
-using FluentScheduler;
-
 using Ninject;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;

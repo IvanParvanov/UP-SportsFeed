@@ -11,7 +11,6 @@ using Microsoft.AspNet.SignalR;
 using SportsFeed.BackgroundWorkers.ScheduledJobs;
 using SportsFeed.Data;
 using SportsFeed.WebClient.App_Start;
-using SportsFeed.WebClient.Hubs;
 using SportsFeed.WebClient.Ninject.Resolvers;
 
 namespace SportsFeed.WebClient
