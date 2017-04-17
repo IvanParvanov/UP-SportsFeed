@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
+using Bytes2you.Validation;
+
 using SportsFeed.Models;
 using SportsFeed.Services.Contracts;
 
@@ -12,14 +14,21 @@ namespace SportsFeed.Services
 {
     public class VitalBetInformationService : IBetInformationService
     {
-        private const string VitalBetApiUrl = "http://vitalbet.net/sportxml";
+        public const string VitalBetApiUrl = "http://vitalbet.net/sportxml";
+
+        private readonly IWebRequestService webRequestService;
+
+        public VitalBetInformationService(IWebRequestService webRequestService)
+        {
+            Guard.WhenArgument(webRequestService, nameof(webRequestService)).IsNull().Throw();
+
+            this.webRequestService = webRequestService;
+        }
 
         public IList<Sport> GetData()
         {
-            var client = new System.Net.WebClient();
-            var text = client.DownloadString(VitalBetApiUrl);
+            var text = File.ReadAllText(@"D:\SampleDataLite.xml");//this.webRequestService.DownloadString(VitalBetApiUrl);
 
-            //var text = File.ReadAllText("D:\\SampleDataLite.xml");
             var serializer = new XmlSerializer(typeof(XmlSports));
             var memStream = new MemoryStream(Encoding.UTF8.GetBytes(text));
             var deserialized = (XmlSports)serializer.Deserialize(memStream);
@@ -46,22 +55,18 @@ namespace SportsFeed.Services
                         continue;
                     }
 
-                    //sportEvent.Sport = sport;
                     sportEvent.SportId = sport.Id;
 
                     foreach (var sportEventMatch in sportEvent.Matches)
                     {
-                        //sportEventMatch.Event = sportEvent;
                         sportEventMatch.EventId = sportEvent.Id;
 
                         foreach (var bet in sportEventMatch.Bets)
                         {
-                            //bet.Match = sportEventMatch;
                             bet.MatchId = sportEventMatch.Id;
 
                             foreach (var odd in bet.Odds)
                             {
-                                //odd.Bet = bet;
                                 odd.BetId = bet.Id;
                             }
                         }

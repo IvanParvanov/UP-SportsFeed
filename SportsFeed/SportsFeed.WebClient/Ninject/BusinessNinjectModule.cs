@@ -2,6 +2,7 @@
 
 using FluentScheduler;
 
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 using SportsFeed.BackgroundWorkers.Helpers;
@@ -9,6 +10,7 @@ using SportsFeed.BackgroundWorkers.Helpers.Contracts;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
 using SportsFeed.Services;
 using SportsFeed.Services.Contracts;
+using SportsFeed.Services.Factories;
 
 namespace SportsFeed.WebClient.Ninject
 {
@@ -35,6 +37,10 @@ namespace SportsFeed.WebClient.Ninject
 
             this.Rebind<IBetInformationService>()
                 .To<VitalBetInformationService>()
+                .InSingletonScope();
+
+            this.Bind<IDbUpdatedResultFactory>()
+                .ToFactory()
                 .InSingletonScope();
         }
     }

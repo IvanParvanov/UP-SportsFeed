@@ -32,7 +32,7 @@ namespace SportsFeed.WebClient
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportsFeedDbContext, Data.Migrations.Configuration>());
 
             JobManager.JobFactory = new NinjectFluentSchedulerDependencyResolver(NinjectWebCommon.Kernel);
-            JobManager.Initialize(new UpdateDatabaseRegistry());
+            JobManager.Initialize(new UpdateDatabaseRegistry(NinjectWebCommon.Kernel));
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());

@@ -1,28 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using Bytes2you.Validation;
 
-using Bytes2you.Validation;
-
-using SportsFeed.Models.Contracts;
+using SportsFeed.Services.Results;
 
 namespace SportsFeed.BackgroundWorkers.EventArgs
 {
     public class DatabaseUpdatedEventArgs
     {
-        private readonly IEnumerable<IExternalEntity> changes;
+        private readonly IDatabaseUpdatedResult changes;
 
         public DatabaseUpdatedEventArgs()
         {
-            this.changes = new List<IExternalEntity>();
+            this.changes = new DatabaseUpdatedResult();
         }
 
-        public DatabaseUpdatedEventArgs(IEnumerable<IExternalEntity> changes)
+        public DatabaseUpdatedEventArgs(IDatabaseUpdatedResult changes)
         {
             Guard.WhenArgument(changes, nameof(changes)).IsNull().Throw();
 
             this.changes = changes;
         }
 
-        public IEnumerable<IExternalEntity> Changes
+        public IDatabaseUpdatedResult Changes
         {
             get { return this.changes; }
         }

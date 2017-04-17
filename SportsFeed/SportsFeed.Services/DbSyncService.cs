@@ -6,9 +6,9 @@ using System.Linq;
 using Bytes2you.Validation;
 
 using SportsFeed.Data.Contracts;
-using SportsFeed.Models;
-using SportsFeed.Models.Contracts;
 using SportsFeed.Services.Contracts;
+using SportsFeed.Services.Factories;
+using SportsFeed.Services.Results;
 
 namespace SportsFeed.Services
 {
@@ -16,71 +16,63 @@ namespace SportsFeed.Services
     {
         private readonly ISportsFeedDbContext dbContext;
         private readonly IBetInformationService betService;
-        private ISet<Sport> sports;
-        private ISet<Event> events;
-        private ISet<Match> matches;
-        private ISet<Bet> bets;
-        private ISet<Odd> odds;
+        private readonly IDbUpdatedResultFactory resultFactory;
 
-        public DbSyncService(ISportsFeedDbContext dbContext, IBetInformationService betService)
+        public DbSyncService(ISportsFeedDbContext dbContext, IBetInformationService betService, IDbUpdatedResultFactory resultFactory)
         {
             Guard.WhenArgument(dbContext, nameof(dbContext)).IsNull().Throw();
             Guard.WhenArgument(betService, nameof(betService)).IsNull().Throw();
+            Guard.WhenArgument(resultFactory, nameof(resultFactory)).IsNull().Throw();
 
             this.dbContext = dbContext;
             this.betService = betService;
-
-            this.UpdateInMemoryCollections();
+            this.resultFactory = resultFactory;
         }
 
-        public IEnumerable<IExternalEntity> SyncDatabase()
+        public virtual IDatabaseUpdatedResult SyncDatabase()
         {
             var st = new Stopwatch();
-            var webSports = this.betService.GetData();
             st.Start();
 
-            var newEvents = webSports.SelectMany(s => s.Events).ToArray();
-            var newMatches = newEvents.SelectMany(e => e.Matches).ToArray();
-            var newBets = newMatches.SelectMany(m => m.Bets).ToArray();
-            var newOdds = newBets.SelectMany(m => m.Odds).ToArray();
+            var databaseIsEmpty = !this.dbContext.Sports.Any();
 
-            var newSports = webSports.Except(this.sports).ToArray();
-            newEvents = newEvents.Except(this.events).ToArray();
-            newMatches = newMatches.Except(this.matches).ToArray();
-            newBets = newBets.Except(this.bets).ToArray();
-            newOdds = newOdds.Except(this.odds).ToArray();
+            var webSports = this.betService.GetData();
 
-            this.dbContext.Odds.AddOrUpdate(newOdds);
-            this.dbContext.Bets.AddOrUpdate(newBets);
-            this.dbContext.Matches.AddOrUpdate(newMatches);
-            this.dbContext.Events.AddOrUpdate(newEvents);
-            this.dbContext.Sports.AddOrUpdate(newSports);
+            var changedEvents = webSports.SelectMany(s => s.Events).ToArray();
+            var changedMatches = changedEvents.SelectMany(e => e.Matches).ToArray();
+            var changedBets = changedMatches.SelectMany(m => m.Bets).ToArray();
+            var changedOdds = changedBets.SelectMany(m => m.Odds).ToArray();
+
+            var changedSports = webSports.Except(this.dbContext.Sports.ToArray()).ToArray();
+            changedEvents = changedEvents.Except(this.dbContext.Events.ToArray()).ToArray();
+            changedMatches = changedMatches.Except(this.dbContext.Matches.ToArray()).ToArray();
+            changedBets = changedBets.Except(this.dbContext.Bets.ToArray()).ToArray();
+            changedOdds = changedOdds.Except(this.dbContext.Odds.ToArray()).ToArray();
+
+            this.dbContext.Odds.AddOrUpdate(changedOdds);
+            this.dbContext.Bets.AddOrUpdate(changedBets);
+            this.dbContext.Matches.AddOrUpdate(changedMatches);
+            this.dbContext.Events.AddOrUpdate(changedEvents);
+            this.dbContext.Sports.AddOrUpdate(changedSports);
 
             this.dbContext.SaveChanges();
+
+            if (databaseIsEmpty)
+            {
+                return this.resultFactory.CreateDatabaseUpdatedResult();
+            }
+
+            var sportIds = new HashSet<int>(changedSports.Select(s => s.Id));
+            var eventIds = new HashSet<int>(changedEvents.Select(s => s.Id));
+            var matchIds = new HashSet<int>(changedMatches.Select(s => s.Id));
+            var betIds = new HashSet<int>(changedBets.Select(s => s.Id));
+            var oddIds = new HashSet<int>(changedOdds.Select(s => s.Id));
+
+            var result = this.resultFactory.CreateDatabaseUpdatedResult(sportIds, eventIds, matchIds, betIds, oddIds);
+
             st.Stop();
             var a = st.Elapsed;
-
-            this.UpdateInMemoryCollections();
-            
-            return webSports;
-        }
-
-        private void UpdateInMemoryCollections()
-        {
-            var sports = this.dbContext.Sports.ToList();
-            this.sports = new HashSet<Sport>(sports);
-
-            var events = this.dbContext.Events.ToList();
-            this.events = new HashSet<Event>(events);
-
-            var matches = this.dbContext.Matches.ToList();
-            this.matches = new HashSet<Match>(matches);
-
-            var bets = this.dbContext.Bets.ToList();
-            this.bets = new HashSet<Bet>(bets);
-
-            var odds = this.dbContext.Odds.ToList();
-            this.odds = new HashSet<Odd>(odds);
+            return result;
         }
     }
 }

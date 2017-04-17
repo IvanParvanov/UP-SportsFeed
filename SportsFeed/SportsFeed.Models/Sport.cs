@@ -18,7 +18,7 @@ namespace SportsFeed.Models
 
         public override bool Equals(object obj)
         {
-            var other = obj as Match;
+            var other = obj as Sport;
             if (other == null)
             {
                 return false;
