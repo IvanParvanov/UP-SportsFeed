@@ -10,7 +10,7 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs
 {
     public class UpdateDatabaseRegistry : Registry
     {
-        public const int DatabaseUpdateIntervalMinutes = 20;
+        public const int DatabaseUpdateIntervalMinutes = 1;
         public const int DatabaseCleanupIntervalMinutes = 4;
 
         public UpdateDatabaseRegistry(IKernel kernel)
@@ -27,7 +27,7 @@ namespace SportsFeed.BackgroundWorkers.ScheduledJobs
                               job.Execute();
 
                               JobManager.AddJob(() => kernel.Get<UpdateDatabaseJob>().Execute(),
-                                                (s) => s.ToRunEvery(DatabaseUpdateIntervalMinutes).Seconds());
+                                                (s) => s.ToRunEvery(DatabaseUpdateIntervalMinutes).Minutes());
                           })
                 .ToRunNow();
 
