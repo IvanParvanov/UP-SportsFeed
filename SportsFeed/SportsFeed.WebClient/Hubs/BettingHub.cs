@@ -21,6 +21,7 @@ namespace SportsFeed.WebClient.Hubs
         public BettingHub(INotifyDatabaseUpdated notifyUpdated, INotifyDatabaseCleanup notifyCleanup, IGroupBySportService dataService)
         {
             Guard.WhenArgument(notifyUpdated, nameof(notifyUpdated)).IsNull().Throw();
+            Guard.WhenArgument(notifyCleanup, nameof(notifyCleanup)).IsNull().Throw();
             Guard.WhenArgument(dataService, nameof(dataService)).IsNull().Throw();
 
             this.dataService = dataService;
@@ -92,6 +93,7 @@ namespace SportsFeed.WebClient.Hubs
                               Bets = GetValue(bets, sport),
                               Odds = GetValue(odds, sport)
                           };
+                this.Clients.Group("Soccer").SendUpdateData(dto);
 
                 this.Clients.Group(sport).SendUpdateData(dto);
             }

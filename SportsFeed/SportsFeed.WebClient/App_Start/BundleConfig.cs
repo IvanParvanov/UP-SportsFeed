@@ -12,7 +12,8 @@ namespace SportsFeed.WebClient
                                                                      "~/Scripts/jquery.unobtrusive-ajax.min.js",
                                                                      "~/Scripts/jquery.signalR-2.2.1.min.js",
                                                                      "~/Scripts/bootstrap.js",
-                                                                        "~/Scripts/respond.js"
+                                                                     "~/Scripts/handlebars.js",
+                                                                     "~/Scripts/respond.js"
                                                                     ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
