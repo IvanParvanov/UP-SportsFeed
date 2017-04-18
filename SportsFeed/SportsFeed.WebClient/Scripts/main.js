@@ -10,47 +10,21 @@ function changeRoom(group) {
 }
 
 $(document).ready(function () {
-    var oddTemplateHtml = $("#odd-template").html();
-    var betTemplateHtml = $("#bet-template").html();
-    var matchTemplateHtml = $("#match-template").html();
+    var templates = (function () {
+        var oddTemplateHtml = $("#odd-template").html();
+        var betTemplateHtml = $("#bet-template").html();
+        var matchTemplateHtml = $("#match-template").html();
+        Handlebars.registerPartial("odd", oddTemplateHtml);
+        Handlebars.registerPartial("bet", betTemplateHtml);
+        Handlebars.registerPartial("match", matchTemplateHtml);
 
-    var templates = {
-        event: Handlebars.compile($("#event-template").html()),
-        match: Handlebars.compile(matchTemplateHtml),
-        bet: Handlebars.compile(betTemplateHtml),
-        odd: Handlebars.compile(oddTemplateHtml)
-    };
-
-    Handlebars.registerPartial("odd", oddTemplateHtml);
-    Handlebars.registerPartial("bet", betTemplateHtml);
-    Handlebars.registerPartial("match", matchTemplateHtml);
-    var odd = {
-        Id: 999,
-        Name: "Odd1",
-        SpecialBetValue: "9999",
-        Value: 5000.3
-    };
-
-    var bet = {
-        Id: 1111,
-        Name: "SuperBet",
-        Odds: [odd]
-    };
-
-    var match = {
-        Id: 2222,
-        Name: "Pesho Vs Tutrakan",
-        Bets: [bet]
-    };
-
-    var event = {
-        Id: 3333,
-        Name: "Super Tournament",
-        Matches: [match]
-    }
-
-    var a = templates.event(event);
-    console.log(a);
+        return {
+            event: Handlebars.compile($("#event-template").html()),
+            match: Handlebars.compile(matchTemplateHtml),
+            bet: Handlebars.compile(betTemplateHtml),
+            odd: Handlebars.compile(oddTemplateHtml)
+        }
+    })();
 
     bettingHub = $.connection.bettingHub;
 
@@ -59,6 +33,107 @@ $(document).ready(function () {
         console.log(changes);
 
         ensureNoNulls(changes);
+
+        changes.Events.forEach(function (ev) {
+            var id = ev.Id;
+            var $element = $("#event-" + id);
+            ev.Matches = [];
+            if ($element.length == 0) {
+                for (var i = changes.Matches.length - 1; i >= 0; i--) {
+                    var currentMatch = changes.Matches[i];
+                    if (currentMatch.EventId === ev.Id) {
+                        pushApply(ev.Matches, changes.Matches.splice(i, 1));
+                    }
+
+                    currentMatch.Bets = [];
+                    for (var j = changes.Bets.length - 1; j >= 0; j--) {
+                        var currentBet = changes.Bets[j];
+                        if (currentBet.MatchId == currentMatch.Id) {
+                            pushApply(currentMatch.Bets, changes.Bets.splice(j, 1));
+                        }
+
+                        currentBet.Odds = [];
+                        for (var k = changes.Odds.length - 1; k >= 0; k--) {
+                            var currentOdd = changes.Odds[k];
+                            if (currentOdd.BetId == currentBet.Id) {
+                                pushApply(currentBet.Odds, changes.Odds.splice(k, 1));
+                            }
+                        }
+                    }
+                }
+
+                var html = templates.event(ev);
+                $("#events").prepend(html);
+
+                ev.Matches.forEach(function (m) {
+                    $("#match-toggle-" + m.Id).collapse();
+                });
+            } else {
+                $element.find(".event-name").text(ev.Name);
+            }
+        });
+
+        changes.Matches.forEach(function (m) {
+            var id = m.Id;
+            var $element = $("#match-" + id);
+            m.Bets = [];
+            if ($element.length == 0) {
+                m.Bets = [];
+                for (var j = changes.Bets.length - 1; j >= 0; j--) {
+                    var currentBet = changes.Bets[j];
+                    if (currentBet.MatchId == m.Id) {
+                        pushApply(m.Bets, changes.Bets.splice(j, 1));
+                    }
+
+                    currentBet.Odds = [];
+                    for (var k = changes.Odds.Length - 1; k >= 0; k--) {
+                        var currentOdd = changes.Odds[k];
+                        if (currentOdd.BetId == currentBet.Id) {
+                            pushApply(currentBet.Odds, changes.Odds.splice(k, 1));
+                        }
+                    }
+                }
+
+                var html = templates.match(m);
+                $("#event-" + m.EventId).append(html);
+
+            } else {
+                $element.find(".match-name").text(m.Name);
+            }
+        });
+
+        changes.Bets.forEach(function (b) {
+            var id = b.Id;
+            var $element = $("#bet-" + id);
+            b.Odds = [];
+            if ($element.length == 0) {
+                for (var k = changes.Odds.Length - 1; k >= 0; k--) {
+                    var currentOdd = changes.Odds[k];
+                    if (currentOdd.BetId == b.Id) {
+                        pushApply(b.Odds, changes.Odds.splice(k, 1));
+                    }
+                }
+
+                var html = templates.bet(b);
+                $("#match-toggle-" + b.MatchId).append(html);
+            } else {
+                $element.find(".bet-name").text(b.Name);
+            }
+        });
+
+        changes.Odds.forEach(function (o) {
+            var id = o.Id;
+            var $element = $("#odd-" + id);
+
+            if ($element.length == 0) {
+                var html = templates.odd(o);
+                $("#bet-" + o.BetId).append(html);
+            } else {
+                $element.find(".odd-name").text(o.Name);
+                $element.find(".odd-specialBetValue").text(o.SpecialBetValue);
+                $element.find(".odd-value").text(o.Value);
+            }
+        });
     };
 
     bettingHub.client.sendDeleteData = function (changes) {
@@ -79,6 +154,10 @@ $(document).ready(function () {
         data.Matches = data.Matches || [];
         data.Bets = data.Bets || [];
         data.Odds = data.Odds || [];
+    }
+
+    function pushApply(destination, source) {
+        Array.prototype.push.apply(destination, source);
     }
 
     function deleteEntities(data) {

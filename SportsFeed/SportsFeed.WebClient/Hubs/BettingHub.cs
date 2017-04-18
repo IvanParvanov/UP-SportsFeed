@@ -93,7 +93,6 @@ namespace SportsFeed.WebClient.Hubs
                               Bets = GetValue(bets, sport),
                               Odds = GetValue(odds, sport)
                           };
-                this.Clients.Group("Soccer").SendUpdateData(dto);
 
                 this.Clients.Group(sport).SendUpdateData(dto);
             }

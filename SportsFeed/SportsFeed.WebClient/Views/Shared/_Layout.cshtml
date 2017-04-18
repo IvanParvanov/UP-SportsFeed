@@ -20,29 +20,33 @@
 <script id="odd-template" type="text/x-handlebars-template">
         <tr id="odd-{{Id}}">
             <td>
-                <span>{{Name}}</span>
+                <span class="odd-name">{{Name}}</span>
                 {{#if SpecialBetValue}}
-                    <span class="badge"> {{SpecialBetValue}}</span>
+                    <span class="badge odd-specialBetValue"> {{SpecialBetValue}}</span>
                 {{/if}}
             </td>
             <td>
-                <strong>{{Value}}</strong>
+                <strong class="odd-value">{{Value}}</strong>
             </td>
         </tr>
 </script>
 
 <script id="bet-template" type="text/x-handlebars-template">
     <table id="bet-{{Id}}" class="table table-bordered table-hover table-responsive table-striped table-condensed">
-        <tr class="success">
-            <th>
-                <h4>
-                    <strong>{{Name}}</strong>
-                </h4>
-            </th>
-        </tr>
-        {{#Odds}}
-            {{> odd Id=Id Name=Name SpecialBetValue=SpecialBetValue}}
-        {{/Odds}}
+        <thead>
+            <tr class="success">
+                <th>
+                    <h4>
+                        <strong class="bet-name">{{Name}}</strong>
+                    </h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#Odds}}
+                {{> odd Id=Id Name=Name SpecialBetValue=SpecialBetValue}}
+            {{/Odds}}
+        </tbody>
     </table>
 </script>
 
@@ -50,7 +54,7 @@
     <div class="panel panel-default" id="match-{{Id}}">
         <div class="panel-heading pointer" data-toggle="collapse" data-target="#match-toggle-{{Id}}">
             <h4>
-                {{Name}} <strong class="pull-right">{{StartDate}}</strong>
+                <span class="match-name">{{Name}}</span> <strong class="pull-right match-startDate">{{StartDate}}</strong>
             </h4>
         </div>
         <div class="panel-body collapse" id="match-toggle-{{Id}}">
@@ -63,7 +67,7 @@
 
 <script id="event-template" type="text/x-handlebars-template">
     <div class="list-group-item" id="event-{{Id}}">
-        <h2 class="list-group-item-heading">{{Name}}</h2>
+        <h2 class="list-group-item-heading event-name">{{Name}}</h2>
         <hr />
         {{#Matches}}
             {{> match Id=Id Name=Name Bets=Bets}}
