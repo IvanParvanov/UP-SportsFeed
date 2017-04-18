@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.WebClient", "SportsFeed.WebClient\SportsFeed.WebClient.csproj", "{C732F087-BA43-4243-9D6A-D6D61F1B5E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.WebClient.Tests", "SportsFeed.WebClient.Tests\SportsFeed.WebClient.Tests.csproj", "{8AC8FCE8-2C96-40A6-9CA1-70F3993049F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Tests", "SportsFeed.WebClient.Tests\SportsFeed.Tests.csproj", "{8AC8FCE8-2C96-40A6-9CA1-70F3993049F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsFeed.Data", "SportsFeed.Data\SportsFeed.Data.csproj", "{D52CAFEA-1D3C-43E9-B7D8-AAC14992140F}"
 EndProject

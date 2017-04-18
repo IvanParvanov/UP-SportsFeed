@@ -1,19 +1,14 @@
-﻿using System;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Ninject;
-using Ninject.Activation;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
-using Ninject.Planning.Targets;
 
 using SportsFeed.BackgroundWorkers.Helpers;
 using SportsFeed.BackgroundWorkers.Helpers.Contracts;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs;
 using SportsFeed.BackgroundWorkers.ScheduledJobs.Jobs.Contracts;
 using SportsFeed.Data.Contracts;
-using SportsFeed.Data.Results;
 using SportsFeed.Services;
 using SportsFeed.Services.Contracts;
 using SportsFeed.Services.Factories;
